@@ -16,9 +16,13 @@ public class Tile {
 	private Location location;
 	
 	public Tile(Sprite sprite, TileType type, boolean solid) {
+		this(sprite, type, solid, solid, solid, solid);
+	}
+	
+	public Tile(Sprite sprite, TileType type, boolean up, boolean down, boolean left, boolean right) {
 		this.sprite = sprite;
 		this.type = type;
-		box = new CollisionBox(location, 32, 32, solid);
+		box = new CollisionBox(location, 32, 32, up, down, left, right);
 		if (Tiles == null) Tiles = new ArrayList<Tile>();
 		Tiles.add(this);
 	}
@@ -38,6 +42,10 @@ public class Tile {
 	
 	public CollisionBox getCollisionBox() {
 		return box;
+	}
+	
+	public void setCollisionBox(CollisionBox box) {
+		this.box = box;
 	}
 	
 	public Tile(Sprite sprite, TileType type) {

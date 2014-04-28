@@ -3,26 +3,32 @@ package uk.co.newagedev.LD29.states;
 import java.awt.Color;
 
 import uk.co.newagedev.LD29.maps.Map;
+import uk.co.newagedev.LD29.tiles.Tile;
+import uk.co.newagedev.LD29.tiles.TileSpawner;
 
 public class GameState extends State {
 
-	private Map map;
+	private boolean spawned;
 
 	public GameState() {
-		super(Color.BLACK);
-		map = Map.HOSPITAL;
+		super(new Color(20, 20, 20), Map.HOSPITAL);
 	}
 
 	public void render() {
 		super.render();
-		map.render();
-	}
-	
-	public Map getMap() {
-		return map;
+		getMap().render();
 	}
 
 	public void update() {
-		map.update();
+		if (!spawned) {
+			spawned = true;
+			for (Tile tile : getMap().getTiles()) {
+				if (tile instanceof TileSpawner) {
+					TileSpawner t = (TileSpawner) tile;
+					t.spawn(3);
+				}
+			}
+		}
+		getMap().update();
 	}
 }

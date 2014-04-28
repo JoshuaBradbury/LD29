@@ -8,15 +8,15 @@ public enum Direction {
 	LEFT,
 	INVALID_DIRECTION;
 	
-	public static Direction getDirectionFromMove(int x, int y) {
-		if (x >= 0) {
-			return RIGHT;
-		} else if (y >= 0) {
+	public static Direction getOpposite(Direction dir) {
+		if (dir == UP) {
 			return DOWN;
-		} else if (x <= 0) {
-			return LEFT;
-		} else if (y <= 0) {
+		} else if (dir == DOWN) {
 			return UP;
+		} else if (dir == RIGHT) {
+			return LEFT;
+		} else if (dir == LEFT) {
+			return RIGHT;
 		}
 		return INVALID_DIRECTION;
 	}

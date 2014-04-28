@@ -5,6 +5,6 @@ import uk.co.newagedev.LD29.graphics.SpriteSheet;
 public class TileGround extends Tile {
 	
 	public TileGround() {
-		super(SpriteSheet.HOSPITAL_TILES.getSprite(5), TileType.GROUND, true);
+		super(SpriteSheet.HOSPITAL_TILES.getSprite(6), TileType.GROUND, true);
 	}
 }

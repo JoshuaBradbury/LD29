@@ -11,12 +11,24 @@ public class Location {
 		this.y = y;
 	}
 	
+	public Location getInstance() {
+		return new Location(x, y);
+	}
+	
 	public boolean equals(Location location) {
 		return x == location.getX() && y == location.getY();
 	}
 	
 	public int getX() {
 		return x;
+	}
+	
+	public String toString() {
+		return "x=" + x + ", y=" + y;
+	}
+	
+	public Location removeModulus(int xModulus, int yModulus) {
+		return new Location(x - (x % xModulus), y - (y % yModulus));
 	}
 	
 	public int getY() {

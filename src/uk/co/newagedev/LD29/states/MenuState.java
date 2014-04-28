@@ -6,17 +6,19 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import uk.co.newagedev.LD29.Main;
+import uk.co.newagedev.LD29.maps.Map;
 
 public class MenuState extends State {
 
 	private ArrayList<String> options = new ArrayList<String>();
-	private int pos;
+	private int pos, offset;
 	private Font font;
 	private String optionPressed = "";
 
-	public MenuState(Font font) {
-		super(Color.BLACK);
+	public MenuState(Font font, int offset) {
+		super(new Color(20, 20, 20), Map.TITLE_SCREEN);
 		this.font = font;
+		this.offset = offset;
 	}
 
 	public String getOptionPressed() {
@@ -29,9 +31,10 @@ public class MenuState extends State {
 
 	public void render() {
 		super.render();
+		getMap().render();
 		if (options.size() > 0) {
 			int inc = (Main.HEIGHT - 200 - Main.getScreen().getTextHeight(font, options.get(0))) / options.size();
-			int h = 100;
+			int h = offset;
 			for (int i = 0; i < options.size(); i++) {
 				int w = Main.getScreen().getTextWidth(font, options.get(i));
 				if (pos == i)
@@ -57,10 +60,11 @@ public class MenuState extends State {
 				pos = options.size() - 1;
 			}
 		}
+		getMap().update();
 		if (Main.mouse.didMouseMove()) {
 			if (options.size() > 0) {
 				int inc = (Main.HEIGHT - 200 - Main.getScreen().getTextHeight(font, options.get(0))) / options.size();
-				int h = 100;
+				int h = offset;
 				for (int i = 0; i < options.size(); i++) {
 					int w = Main.getScreen().getTextWidth(font, options.get(i));
 					if (Main.mouse.getMouseX() > 200 && Main.mouse.getMouseX() < Main.WIDTH - 200) {
@@ -77,7 +81,7 @@ public class MenuState extends State {
 		if (Main.mouse.isMouseReleasing()) {
 			if (options.size() > 0) {
 				int inc = (Main.HEIGHT - 200 - Main.getScreen().getTextHeight(font, options.get(0))) / options.size();
-				int h = 100;
+				int h = offset;
 				for (int i = 0; i < options.size(); i++) {
 					int w = Main.getScreen().getTextWidth(font, options.get(i));
 					if (pos == i) {

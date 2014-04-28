@@ -9,7 +9,7 @@ import uk.co.newagedev.LD29.Main;
 public class SpriteSheet {
 
 	public static final SpriteSheet HOSPITAL_TILES = new SpriteSheet("/textures/tiles/hospital_tiles.png", 16, 16);
-	public static final SpriteSheet DOOR = new SpriteSheet("/textures/tiles/door.png", 2, 2);
+	public static final SpriteSheet DOOR = new SpriteSheet("/textures/tiles/door.png", 2, 1);
 
 	private HashMap<Integer, Sprite> sprites = new HashMap<Integer, Sprite>();
 	private int sheetWidth, sheetHeight, tileWidth, tileHeight;
